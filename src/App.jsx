@@ -9,7 +9,7 @@ import Contact from './component/Contact';
 
 const App = () => {
   return (
-    <div className='w-full min-h-screen overflow-x-hidden bg-white dark:bg-slate-900 transition-colors duration-300'>
+    <div className='w-full min-h-screen overflow-hidden bg-white dark:bg-slate-900 transition-colors duration-300'>
       <Nav/>
       <Hero/>
       <About/>

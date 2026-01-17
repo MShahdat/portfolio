@@ -9,10 +9,20 @@ const Hero = () => {
   const [open, setOpen] = useContext(dataContext);
 
   return (
-    <div id='home' className="w-screen h-screen relative overflow-hidden">
+    <div id='home' className="w-screen h-screen relative overflow-hidden bg-black">
+      {/* <img
+        src='https://images.unsplash.com/photo-1564865878688-9a244444042a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+        className="absolute inset-0 opacity-100 w-full h-full object-cover"
+        alt=""
+      /> */}
       <img
-        src="https://images.unsplash.com/photo-1498798821241-1f327af804fe?q=80&w=1171&auto=format&fit=crop"
-        className="absolute inset-0 w-full h-full object-cover"
+        src='https://images.unsplash.com/photo-1504805572947-34fad45aed93?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+        className="absolute inset-0 opacity-100 w-full h-full object-contain"
+        alt=""
+      />
+      {/* <img
+        src='https://images.unsplash.com/photo-1629757509637-7c99379d6d26?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+        className="absolute inset-0 opacity-100 w-full h-full object-cover"
         alt=""
       />
 
@@ -34,7 +44,7 @@ const Hero = () => {
           </div>
         </div>
 
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -1,14 +1,8 @@
 import React from 'react';
 import { LuLink } from "react-icons/lu";
 import { FaCalendarAlt, FaGithubSquare } from "react-icons/fa";
-import veltrio from '../../public/veltrio.png';
-import kidder from '../../public/kidder.png';
-import boimela from '../../public/e-boimela.png';
-import fly from '../../public/fly.png';
-import school from '../../public/school.png';
-import teste from '../../public/teste.io.png';
-
-
+import { motion } from 'framer-motion';
+import { fadeIn, defaultViewport } from '../motion/motion';
 
 const Projects = () => {
   const project = [
@@ -58,16 +52,29 @@ const Projects = () => {
   return (
     <div id='projects' className='bg-white dark:bg-black text-black dark:text-white'>
       <div className='max-w-7xl px-4 py-12 mx-auto'>
-        <h2 className='text-2xl md:text-4xl font-medium'>My Projects</h2>
-        <div className='w-[130px] md:w-[200px] mt-2'>
-          <div className='w-full h-1 bg-amber-400 '></div>
-          <div className='mt-1 w-[100px] md:w-[160px] h-1 bg-amber-400 '></div>
-        </div>
+        <motion.div
+          variants={fadeIn('up', .25)}
+          initial='hidden'
+          whileInView={'show'}
+          viewport={defaultViewport}
+        >
+          <h2 className='text-2xl md:text-4xl font-medium'>My Projects</h2>
+          <div className='w-[130px] md:w-[200px] mt-2'>
+            <div className='w-full h-1 bg-amber-400 '></div>
+            <div className='mt-1 w-[100px] md:w-[160px] h-1 bg-amber-400 '></div>
+          </div>
+        </motion.div>
+
         <div className='mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-10 gap-4'>
           {
             project.map((item, idx) => {
               return (
-                <div key={idx} className={idx === 0 || idx === 5 ? "lg:col-span-4" : 'lg:col-span-3'}>
+                <motion.div
+                  variants={fadeIn('up', .15)}
+                  initial='hidden'
+                  whileInView={'show'}
+                  viewport={{once: false}}
+                  key={idx} className={idx === 0 || idx === 5 ? "lg:col-span-4" : 'lg:col-span-3'}>
                   <div className='dark:border border-white/60'>
                     <div className='relative'>
                       <img src={item.cover} className={`h-[300px] md:h-[320px] w-full object-cover hover:scale-102 duration-500 transform rounded`}></img>
@@ -90,7 +97,7 @@ const Projects = () => {
                       </div>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               )
             })
           }

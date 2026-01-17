@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaFacebook } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
@@ -10,27 +10,30 @@ import { LuNotebookPen } from "react-icons/lu";
 import { MdContactPhone } from "react-icons/md";
 import { IoMdContact } from "react-icons/io";
 import { GrProjects } from "react-icons/gr";
+import { dataContext } from '../context/Context';
+// import me from '../../public/sxfdsdf.jpg';
+import me from '../../public/last.jpg';
 
 const link = [
   {
     icon: <FaFacebook className='size-5' />,
-    to: '#',
+    to: 'https://www.facebook.com/md.shahdat.hossain.547522/',
   },
   {
     icon: <FaTwitter className='size-5' />,
-    to: '#',
+    to: 'https://x.com/MdShahdat25',
   },
   {
     icon: <FaInstagram className='size-5' />,
-    to: '#',
+    to: 'https://www.instagram.com/sahadathossain85/',
   },
   {
     icon: <FaGithub className='size-5' />,
-    to: '#',
+    to: 'https://github.com/MShahdat',
   },
   {
     icon: <FaLinkedin className='size-5' />,
-    to: '#',
+    to: 'https://www.linkedin.com/in/md-shahdat-hossain/',
   }
 ]
 
@@ -63,17 +66,19 @@ const nav = [
 ]
 
 const Sidebar = () => {
+  const [open, setOpen] = useContext(dataContext);
+
   return (
     <div className=''>
       <div className='dark:bg-black bg-white dark:text-white text-black w-[300px] md:w-[350px] h-screen'>
         <div className='flex flex-col gap-10 py-8'>
           <div className='flex flex-col gap-4 items-center'>
-            <img src='https://plus.unsplash.com/premium_photo-1678197937465-bdbc4ed95815?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' className='h-32 w-32 rounded-full border-[6px] border-white/30 object-cover'></img>
+            <img src={me} className='h-32 w-32 rounded-full border-[6px] border-white/30 object-fill'></img>
             <h2 className='text-[24px] font-medium'>Md. Shahdat Hossain</h2>
             <div className='flex gap-3'>
               {
                 link.map((li, idx) => (
-                  <a href={li.to} key={idx} className='flex flex-col items-center justify-center size-9 rounded-full bg-black/5 dark:bg-white/20'>
+                  <a href={li.to} target='_blank' key={idx} className='flex flex-col items-center justify-center size-9 rounded-full bg-black/5 dark:bg-white/20'>
                     {
                       li.icon
                     }
@@ -85,9 +90,11 @@ const Sidebar = () => {
           <div className='flex flex-col gap-6 px-10 md:px-16'>
             {
               nav.map((item, idx) => (
-                <a key={idx} href={item.to} className='flex items-center gap-3'>
+                <a onClick={() => {
+                  setOpen(!open)
+                }} key={idx} href={item.to} className='flex items-center gap-3'>
                   {item.icon}
-                  <h2 className='text-[16px] lg:text-[18px]'>{item.la}</h2>
+                  <h2 className='text-[16px] font-medium'>{item.la}</h2>
                 </a>
               ))
             }

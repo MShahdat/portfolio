@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { MdAddCall } from "react-icons/md";
 import { FaLocationDot } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
+import { motion } from 'framer-motion';
+import { fadeIn, defaultViewport } from '../motion/motion';
 
 const cont = [
   {
@@ -32,28 +34,45 @@ const Contact = () => {
   return (
     <div id='contact' className='bg-white dark:bg-black text-black dark:text-white'>
       <div className='max-w-7xl px-4 py-16 mx-auto'>
-        <h3 className='text-2xl md:text-4xl font-medium'>Tools and Skills</h3>
-        <div className='w-[170px] md:w-[250px] mt-2 pb-4'>
-          <div className='w-full h-1 bg-amber-400 '></div>
-          <div className='mt-1 w-[130px] md:w-[200px] h-1 bg-amber-400 '></div>
-        </div>
+        <motion.div
+          variants={fadeIn('up', .15)}
+          initial='hidden'
+          whileInView={'show'}
+          viewport={defaultViewport}
+        >
+          <h3 className='text-2xl md:text-4xl font-medium'>Contact Me</h3>
+          <div className='w-[130px] md:w-[190px] mt-2 pb-4'>
+            <div className='w-full h-1 bg-amber-400 '></div>
+            <div className='mt-1 w-[100px] md:w-[150px] h-1 bg-amber-400 '></div>
+          </div>
+        </motion.div>
         <div className='mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 space-y-4 gap-4'>
           {
             cont.map((con, idx) => (
-              <div key={idx} className='flex flex-col items-center justify-center'>
+              <motion.div
+                variants={fadeIn('up', .20)}
+                initial='hidden'
+                whileInView={'show'}
+                viewport={defaultViewport}
+                key={idx} className='flex flex-col items-center justify-center'>
                 <div className='bg-red-50 dark:bg-white/10 relative w-24 h-24 rounded-full'>
                   <div className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2'>
                     <span className='text-4xl text-amber-500'>{con.icon}</span>
                   </div>
                 </div>
                 <p className='text-[16px] tracking-wide md:text-[17px] text-center leading-normal mt-2 dark:text-white/90 text-black/80'>{con.des}</p>
-              </div>
+              </motion.div>
             ))
           }
         </div>
 
         <div className=' mt-16 grid grid-cols-1 md:grid-cols-2 rounded-lg'>
-          <div className='bg-amber-600 shadow-2xl text-white'>
+          <motion.div
+          variants={fadeIn('right', .25)}
+          initial='hidden'
+          whileInView={'show'}
+          viewport={defaultViewport}
+          className='bg-amber-600 shadow-2xl text-white'>
             <div className='mt-0 p-8'>
               <form onSubmit={formhandle} className='mt-0 w-full '>
                 <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
@@ -84,8 +103,13 @@ const Contact = () => {
                 <button type='submit' className='bg-white w-full text-center text-amber-600 font-bold text[18px] px-6 rounded mt-2 py-1.5'>Submit</button>
               </form>
             </div>
-          </div>
-          <div className="w-full min-h-[400px] overflow-hidden">
+          </motion.div>
+          <motion.div
+          variants={fadeIn('left', .25)}
+          initial='hidden'
+          whileInView={'show'}
+          viewport={defaultViewport}
+          className="w-full min-h-[400px] overflow-hidden">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d217.03611072465634!2d90.49947640059956!3d23.69947466809364!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b6ef045b692f%3A0x72ac0cae5d660029!2sMFXX%2BRP4%2C%20Narayanganj%201361!5e1!3m2!1sen!2sbd!4v1764966094488!5m2!1sen!2sbd"
               width="100%"
@@ -95,15 +119,19 @@ const Contact = () => {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             ></iframe>
-          </div>
+          </motion.div>
         </div>
-
       </div>
 
-      <div className='py-6 px-4 text-black/80 dark:text-white/80 leading-relaxed text-[14px] text-center'>
-        <hr className='border-t pb-4'></hr>
+      <hr className='border-t-[2px] border-white/70'></hr>
+      <motion.div
+      variants={fadeIn('up', .15)}
+                  initial= 'hidden'
+                  whileInView={'show'}
+                  viewport={{once: false}}
+      className='py-8 px-4 bg-black text-white/80 dark:text-white/80 leading-relaxed text-[15px] text-center'>
         Copyright ©2025 All rights reserved. This portfolio is made by Shahdat
-      </div>
+      </motion.div>
     </div>
   );
 };

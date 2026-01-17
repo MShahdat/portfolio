@@ -1,9 +1,7 @@
 import React from 'react';
 import Marquee from "react-fast-marquee";
-import { DiJavascript } from "react-icons/di";
-import { FaGitSquare } from "react-icons/fa";
-import { FaGithubSquare } from "react-icons/fa";
-import { FaFigma } from "react-icons/fa";
+import { motion } from 'framer-motion';
+import { fadeIn, defaultViewport } from '../motion/motion';
 
 const Tools = () => {
   const gitSvg = (
@@ -174,14 +172,22 @@ const Tools = () => {
 
 
   return (
-    <div id='tools' className='dark:bg-black bg-white text-black dark:text-white'>
+    <div id='skills' className='dark:bg-black bg-white text-black dark:text-white'>
       <div className='max-w-7xl px-4 py-16 mx-auto'>
         <div>
-          <h3 className='text-2xl md:text-4xl font-medium'>Tools and Skills</h3>
-          <div className='w-[170px] md:w-[260px] mt-2 pb-4'>
-            <div className='w-full h-1 bg-amber-400 '></div>
-            <div className='mt-1 w-[130px] md:w-[200px] h-1 bg-amber-400 '></div>
-          </div>
+          <motion.div
+            variants={fadeIn('up', .15)}
+            initial='hidden'
+            whileInView={'show'}
+            viewport={defaultViewport}
+          >
+            <h3 className='text-2xl md:text-4xl font-medium'>Tools and Technologies</h3>
+            <div className='w-[250px] md:w-[380px] mt-2 pb-4'>
+              <div className='w-full h-1 bg-amber-400 '></div>
+              <div className='mt-1 w-[200px] md:w-[300px] h-1 bg-amber-400 '></div>
+            </div>
+          </motion.div>
+
           <Marquee
             speed={100}
             direction='left'
