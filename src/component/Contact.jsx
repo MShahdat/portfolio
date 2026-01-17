@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { MdAddCall } from "react-icons/md";
 import { FaLocationDot } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import { motion } from 'framer-motion';
 import { fadeIn, defaultViewport } from '../motion/motion';
+import emailjs from '@emailjs/browser';
+
 
 const cont = [
   {
@@ -27,9 +29,30 @@ const Contact = () => {
   const [msg, setMsg] = useState('');
   const [number, setNumber] = useState('');
 
-  const formhandle = () => {
+  const form = useRef();
 
-  }
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+    console.log('asd')
+
+    emailjs.sendForm('service_14h6jbl', 'template_glhotqd', form.current, {
+        publicKey: 'JzPOWBOssaZtpLF6o',
+      })
+      .then(
+        () => {
+          console.log('SUCCESS!');
+        },
+        (error) => {
+          console.log('FAILED...', error.text);
+        },
+      );
+      setName('');
+      setEmail('');
+      setSub('');
+      setMsg('');
+      setNumber('');
+  };
 
   return (
     <div id='contact' className='bg-white dark:bg-black text-black dark:text-white'>
@@ -74,31 +97,31 @@ const Contact = () => {
           viewport={defaultViewport}
           className='bg-amber-600 shadow-2xl text-white'>
             <div className='mt-0 p-8'>
-              <form onSubmit={formhandle} className='mt-0 w-full '>
+              <form ref={form} onSubmit={sendEmail} className='mt-0 w-full '>
                 <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
                   <div>
                     <label className='mt-0 block font-semibold text-[17px]'>Full Name</label>
-                    <input onChange={(e) => setName(e.target.value)} type='text' value={name} placeholder='Full Name' required className='mt-1 outline-none text-[16px] bg-white text-black/70 font-medium px-3 py-2.5 w-full'></input>
+                    <input onChange={(e) => setName(e.target.value)} type='text' name='name' value={name} placeholder='Full Name' required className='mt-1 outline-none text-[16px] bg-white text-black/70 font-medium px-3 py-2.5 w-full'></input>
                   </div>
 
                   <div>
                     <label className='mt-0 block font-semibold text-[17px]'>Email</label>
-                    <input onChange={(e) => setEmail(e.target.value)} type='email' value={email} placeholder='example@gmail.com' required className='mt-1 outline-none text-[16px] bg-white text-black/70 font-medium px-3 py-2.5 w-full'></input>
+                    <input onChange={(e) => setEmail(e.target.value)} type='email' name='email' value={email} placeholder='example@gmail.com' required className='mt-1 outline-none text-[16px] bg-white text-black/70 font-medium px-3 py-2.5 w-full'></input>
                   </div>
 
                   <div>
                     <label className='mt-0 block font-semibold text-[17px]'>Number</label>
-                    <input onChange={(e) => setNumber(e.target.value)} type='text' value={number} placeholder='Number' required className='mt-1 outline-none text-[16px] bg-white text-black/70 font-medium px-3 py-2.5 w-full'></input>
+                    <input onChange={(e) => setNumber(e.target.value)} type='text' name='number' value={number} placeholder='Number' required className='mt-1 outline-none text-[16px] bg-white text-black/70 font-medium px-3 py-2.5 w-full'></input>
                   </div>
 
                   <div>
                     <label className='mt-0 block font-semibold text-[17px]'>Subject</label>
-                    <input onChange={(e) => setSub(e.target.value)} type='text' value={sub} placeholder='Subject' required className='mt-1 outline-none text-[16px] bg-white text-black/70 font-medium px-3 py-2.5 w-full'></input>
+                    <input onChange={(e) => setSub(e.target.value)} type='text' name='sub' value={sub} placeholder='Subject' required className='mt-1 outline-none text-[16px] bg-white text-black/70 font-medium px-3 py-2.5 w-full'></input>
                   </div>
                 </div>
 
                 <label className='mt-3 block font-semibold text-[17px] '>Message</label>
-                <textarea onChange={(e) => setMsg(e.target.value)} type='text' rows={3} value={msg} placeholder='Write message' required className='mt-1 outline-none text-[16px] bg-white text-black/70 font-medium px-3 py-2.5 w-full'></textarea>
+                <textarea onChange={(e) => setMsg(e.target.value)} type='text' name='msg' rows={3} value={msg} placeholder='Write message' required className='mt-1 outline-none text-[16px] bg-white text-black/70 font-medium px-3 py-2.5 w-full'></textarea>
 
                 <button type='submit' className='bg-white w-full text-center text-amber-600 font-bold text[18px] px-6 rounded mt-2 py-1.5'>Submit</button>
               </form>

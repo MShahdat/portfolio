@@ -171,8 +171,8 @@ const Nav = () => {
         <div className=''>
           <div className='flex items-center gap-1'>
             <div className="dropdown dropdown-end">
-              <div tabIndex={0} role="button" className="btn m-1 min-h-0 h-[32px] bg-black px-4 text-[15px] border border-current/30">{getThemeIcon()}  Theme</div>
-              <ul tabIndex="-1" className="dropdown-content menu bg-black text-white text-[14px] rounded-box z-1 w-27 p-2 shadow">
+              <div tabIndex={0} role="button" className="btn m-1 min-h-0 h-[32px] bg-black/90 px-4 text-[15px] border border-current/30">{getThemeIcon()}  Theme</div>
+              <ul tabIndex="-1" className="dropdown-content menu bg-black/90 text-white text-[14px] rounded-box z-1 w-27 p-2 shadow">
                 {
                   option.map((item, idx) => (
                     <li key={idx} className='text-white'>
